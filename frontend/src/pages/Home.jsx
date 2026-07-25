@@ -97,26 +97,26 @@ const BloodInfoSection = () => {
     const [activeTab, setActiveTab] = useState('guidelines');
 
     return (
-        <div className="py-24 bg-red-50 border-t border-red-100">
+        <div className="py-24 bg-red-50 dark:bg-gray-900 border-t border-red-100 dark:border-gray-800 transition-colors duration-200">
             <RevealOnScroll>
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
                         <h2 className="text-sm text-red-600 font-bold tracking-wider uppercase mb-3">{t.home.bloodInfo.subTitle}</h2>
-                        <p className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                        <p className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
                             {t.home.bloodInfo.title}
                         </p>
                     </div>
 
-                    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                        <div className="flex border-b border-gray-100 flex-wrap">
+                    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden transition-colors duration-200">
+                        <div className="flex border-b border-gray-100 dark:border-gray-700 flex-wrap">
                             {['guidelines', 'compatibility', 'benefits'].map((tab) => (
                                 <button
                                     key={tab}
                                     onClick={() => setActiveTab(tab)}
                                     className={`flex-1 py-4 px-6 text-center font-medium transition-colors duration-200 ${
                                         activeTab === tab 
-                                            ? 'text-red-600 border-b-2 border-red-600 bg-red-50/50' 
-                                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+                                            ? 'text-red-600 border-b-2 border-red-600 bg-red-50/50 dark:bg-red-900/20' 
+                                            : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                                     }`}
                                 >
                                     {t.home.bloodInfo.tabs[tab]}
@@ -130,7 +130,7 @@ const BloodInfoSection = () => {
                                     {t.home.bloodInfo.content.guidelines.map((item, i) => (
                                         <li key={i} className="flex items-start">
                                             <ShieldCheck className="h-6 w-6 text-red-500 mr-3 flex-shrink-0" />
-                                            <span className="text-gray-700 text-lg">{item}</span>
+                                            <span className="text-gray-700 dark:text-gray-300 text-lg">{item}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -139,7 +139,7 @@ const BloodInfoSection = () => {
                             {activeTab === 'compatibility' && (
                                 <div className="text-center animate-fade-in-up">
                                     <HeartPulse className="h-16 w-16 text-red-500 mx-auto mb-6" />
-                                    <p className="text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto">
+                                    <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto">
                                         {t.home.bloodInfo.content.compatibility}
                                     </p>
                                 </div>
@@ -150,7 +150,7 @@ const BloodInfoSection = () => {
                                     {t.home.bloodInfo.content.benefits.map((item, i) => (
                                         <li key={i} className="flex items-start">
                                             <Activity className="h-6 w-6 text-red-500 mr-3 flex-shrink-0" />
-                                            <span className="text-gray-700 text-lg">{item}</span>
+                                            <span className="text-gray-700 dark:text-gray-300 text-lg">{item}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -167,25 +167,25 @@ const Home = () => {
     const { t } = useLanguage();
     
     return (
-        <div className="flex flex-col min-h-[calc(100vh-4rem)] bg-white">
+        <div className="flex flex-col min-h-[calc(100vh-4rem)] bg-white dark:bg-gray-900 transition-colors duration-200">
             <main className="flex-grow">
                 {/* Hero Section */}
-                <div className="relative overflow-hidden bg-gradient-to-b from-red-50 to-white">
-                    <div className="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 rounded-full bg-red-100 opacity-50 blur-3xl"></div>
-                    <div className="absolute bottom-0 left-0 -ml-20 mb-20 w-64 h-64 rounded-full bg-red-100 opacity-50 blur-3xl"></div>
+                <div className="relative overflow-hidden bg-gradient-to-b from-red-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
+                    <div className="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 rounded-full bg-red-100 dark:bg-red-900/20 opacity-50 blur-3xl transition-colors duration-200"></div>
+                    <div className="absolute bottom-0 left-0 -ml-20 mb-20 w-64 h-64 rounded-full bg-red-100 dark:bg-red-900/20 opacity-50 blur-3xl transition-colors duration-200"></div>
                     
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 lg:pt-32 lg:pb-36 relative z-10">
                         <div className="text-center max-w-3xl mx-auto">
                             <div className="flex justify-center mb-6 animate-fade-in-up">
-                                <div className="p-3 bg-red-100 rounded-2xl">
+                                <div className="p-3 bg-red-100 dark:bg-red-900/30 rounded-2xl transition-colors duration-200">
                                     <HeartPulse className="h-12 w-12 text-red-600 animate-heartbeat" />
                                 </div>
                             </div>
-                            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl animate-fade-in-up-delay">
+                            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl animate-fade-in-up-delay transition-colors duration-200">
                                 <span className="block mb-2">{t.home.hero.line1}</span>
                                 <span className="block text-red-600">{t.home.hero.line2}</span>
                             </h1>
-                            <p className="mt-6 text-lg text-gray-600 sm:text-xl max-w-2xl mx-auto animate-fade-in-up-delay-2">
+                            <p className="mt-6 text-lg text-gray-600 dark:text-gray-300 sm:text-xl max-w-2xl mx-auto animate-fade-in-up-delay-2 transition-colors duration-200">
                                 {t.home.hero.desc}
                             </p>
                             
@@ -220,19 +220,19 @@ const Home = () => {
                                     <div className="text-5xl font-extrabold text-red-600 mb-2">
                                         <CountUp end={5000} suffix="+" />
                                     </div>
-                                    <div className="text-lg font-medium text-gray-600">{t.home.stats.donors}</div>
+                                    <div className="text-lg font-medium text-gray-600 dark:text-gray-300 transition-colors duration-200">{t.home.stats.donors}</div>
                                 </div>
                                 <div className="p-4">
                                     <div className="text-5xl font-extrabold text-red-600 mb-2">
                                         <CountUp end={10000} suffix="+" />
                                     </div>
-                                    <div className="text-lg font-medium text-gray-600">{t.home.stats.lives}</div>
+                                    <div className="text-lg font-medium text-gray-600 dark:text-gray-300 transition-colors duration-200">{t.home.stats.lives}</div>
                                 </div>
                                 <div className="p-4">
                                     <div className="text-5xl font-extrabold text-red-600 mb-2">
                                         <CountUp end={77} />
                                     </div>
-                                    <div className="text-lg font-medium text-gray-600">{t.home.stats.districts}</div>
+                                    <div className="text-lg font-medium text-gray-600 dark:text-gray-300 transition-colors duration-200">{t.home.stats.districts}</div>
                                 </div>
                             </div>
                         </div>
@@ -240,36 +240,36 @@ const Home = () => {
                 </RevealOnScroll>
 
                 {/* Features Section */}
-                <div className="py-24 bg-white">
+                <div className="py-24 bg-white dark:bg-gray-900 transition-colors duration-200">
                     <RevealOnScroll>
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center max-w-2xl mx-auto mb-16">
                                 <h2 className="text-sm text-red-600 font-bold tracking-wider uppercase mb-3">{t.home.features.subTitle}</h2>
-                                <p className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                                <p className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl transition-colors duration-200">
                                     {t.home.features.title}
                                 </p>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                                 <RevealOnScroll delay={100}>
-                                    <div className="bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 h-full">
-                                        <div className="h-14 w-14 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-6 group-hover:bg-red-600 group-hover:text-white transition-colors duration-300">
+                                    <div className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 h-full">
+                                        <div className="h-14 w-14 rounded-xl bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 flex items-center justify-center mb-6 group-hover:bg-red-600 group-hover:text-white transition-colors duration-300">
                                             <MapPin className="h-7 w-7" aria-hidden="true" />
                                         </div>
-                                        <h3 className="text-xl font-bold text-gray-900 mb-3">{t.home.features.districtTitle}</h3>
-                                        <p className="text-gray-600 leading-relaxed">
+                                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 transition-colors duration-200">{t.home.features.districtTitle}</h3>
+                                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed transition-colors duration-200">
                                             {t.home.features.districtDesc}
                                         </p>
                                     </div>
                                 </RevealOnScroll>
 
                                 <RevealOnScroll delay={300}>
-                                    <div className="bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 h-full">
-                                        <div className="h-14 w-14 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-6 group-hover:bg-red-600 group-hover:text-white transition-colors duration-300">
+                                    <div className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 h-full">
+                                        <div className="h-14 w-14 rounded-xl bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 flex items-center justify-center mb-6 group-hover:bg-red-600 group-hover:text-white transition-colors duration-300">
                                             <ShieldCheck className="h-7 w-7" aria-hidden="true" />
                                         </div>
-                                        <h3 className="text-xl font-bold text-gray-900 mb-3">{t.home.features.contactTitle}</h3>
-                                        <p className="text-gray-600 leading-relaxed">
+                                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 transition-colors duration-200">{t.home.features.contactTitle}</h3>
+                                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed transition-colors duration-200">
                                             {t.home.features.contactDesc}
                                         </p>
                                     </div>
@@ -280,12 +280,12 @@ const Home = () => {
                 </div>
 
                 {/* How it Works Section */}
-                <div className="py-24 bg-gray-50 border-t border-gray-100">
+                <div className="py-24 bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 transition-colors duration-200">
                     <RevealOnScroll>
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center max-w-2xl mx-auto mb-16">
                                 <h2 className="text-sm text-red-600 font-bold tracking-wider uppercase mb-3">{t.home.process.subTitle}</h2>
-                                <p className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                                <p className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl transition-colors duration-200">
                                     {t.home.process.title}
                                 </p>
                             </div>
@@ -293,29 +293,29 @@ const Home = () => {
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                                 <RevealOnScroll delay={100}>
                                     <div className="text-center">
-                                        <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-red-100 rounded-full text-red-600 font-bold text-xl mb-6 shadow-sm">
+                                        <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white dark:bg-gray-800 border-2 border-red-100 dark:border-red-900/50 rounded-full text-red-600 dark:text-red-400 font-bold text-xl mb-6 shadow-sm transition-colors duration-200">
                                             1
                                         </div>
-                                        <h3 className="text-lg font-bold text-gray-900 mb-2">{t.home.process.step1Title}</h3>
-                                        <p className="text-gray-500">{t.home.process.step1Desc}</p>
+                                        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-200">{t.home.process.step1Title}</h3>
+                                        <p className="text-gray-500 dark:text-gray-400 transition-colors duration-200">{t.home.process.step1Desc}</p>
                                     </div>
                                 </RevealOnScroll>
                                 <RevealOnScroll delay={300}>
                                     <div className="text-center">
-                                        <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-red-100 rounded-full text-red-600 font-bold text-xl mb-6 shadow-sm">
+                                        <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white dark:bg-gray-800 border-2 border-red-100 dark:border-red-900/50 rounded-full text-red-600 dark:text-red-400 font-bold text-xl mb-6 shadow-sm transition-colors duration-200">
                                             2
                                         </div>
-                                        <h3 className="text-lg font-bold text-gray-900 mb-2">{t.home.process.step2Title}</h3>
-                                        <p className="text-gray-500">{t.home.process.step2Desc}</p>
+                                        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-200">{t.home.process.step2Title}</h3>
+                                        <p className="text-gray-500 dark:text-gray-400 transition-colors duration-200">{t.home.process.step2Desc}</p>
                                     </div>
                                 </RevealOnScroll>
                                 <RevealOnScroll delay={500}>
                                     <div className="text-center">
-                                        <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-red-100 rounded-full text-red-600 font-bold text-xl mb-6 shadow-sm">
+                                        <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white dark:bg-gray-800 border-2 border-red-100 dark:border-red-900/50 rounded-full text-red-600 dark:text-red-400 font-bold text-xl mb-6 shadow-sm transition-colors duration-200">
                                             3
                                         </div>
-                                        <h3 className="text-lg font-bold text-gray-900 mb-2">{t.home.process.step3Title}</h3>
-                                        <p className="text-gray-500">{t.home.process.step3Desc}</p>
+                                        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-200">{t.home.process.step3Title}</h3>
+                                        <p className="text-gray-500 dark:text-gray-400 transition-colors duration-200">{t.home.process.step3Desc}</p>
                                     </div>
                                 </RevealOnScroll>
                             </div>
@@ -327,30 +327,30 @@ const Home = () => {
                 <BloodInfoSection />
 
                 {/* Community / Image Section */}
-                <div className="bg-white overflow-hidden pb-20">
+                <div className="bg-white dark:bg-gray-900 overflow-hidden pb-20 transition-colors duration-200">
                     <RevealOnScroll>
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 border-t border-gray-100">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 border-t border-gray-100 dark:border-gray-800 transition-colors duration-200">
                             <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
                                 <div>
-                                    <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl mb-4">
+                                    <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-4xl mb-4 transition-colors duration-200">
                                         {t.home.community.title}
                                     </h2>
-                                    <p className="text-lg text-gray-500 mb-8">
+                                    <p className="text-lg text-gray-500 dark:text-gray-400 mb-8 transition-colors duration-200">
                                         {t.home.community.desc}
                                     </p>
                                     <div className="flex flex-col sm:flex-row gap-4">
-                                        <Link to="/register" className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-gray-900 hover:bg-gray-800 transition-colors">
+                                        <Link to="/register" className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-gray-900 dark:bg-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors">
                                             <Users className="w-5 h-5 mr-2" />
                                             {t.home.community.joinBtn}
                                         </Link>
-                                        <Link to="/donors" className="inline-flex items-center justify-center px-6 py-3 border border-gray-200 text-base font-medium rounded-xl text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+                                        <Link to="/donors" className="inline-flex items-center justify-center px-6 py-3 border border-gray-200 dark:border-gray-700 text-base font-medium rounded-xl text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                                             <HandHeart className="w-5 h-5 mr-2" />
                                             {t.home.community.seeDonorsBtn}
                                         </Link>
                                     </div>
                                 </div>
                                 <div className="mt-12 lg:mt-0 relative">
-                                    <div className="absolute -inset-4 bg-red-50 rounded-3xl transform rotate-3"></div>
+                                    <div className="absolute -inset-4 bg-red-50 dark:bg-gray-800 rounded-3xl transform rotate-3 transition-colors duration-200"></div>
                                     <img
                                         className="relative rounded-2xl shadow-xl w-full object-cover"
                                         src="/illustration.png"

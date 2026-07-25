@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
-import { Droplet, Menu, X, User as UserIcon, Languages } from 'lucide-react';
+import { Droplet, Menu, X, User as UserIcon, Languages, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 import { useState } from 'react';
 
 const Navbar = () => {
     const { user, logout } = useAuth();
     const { lang, toggleLanguage, t } = useLanguage();
+    const { theme, toggleTheme } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -41,8 +43,11 @@ const Navbar = () => {
                                     <Link to="/register" className="bg-white text-red-600 hover:bg-gray-100 px-4 py-2 rounded-md font-medium shadow-sm">{t.nav.register}</Link>
                                 </div>
                             )}
+                            <button onClick={toggleTheme} className="ml-4 hover:bg-red-700 p-2 rounded-md transition-colors border border-transparent" aria-label="Toggle Dark Mode">
+                                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                            </button>
 
-                            <button onClick={toggleLanguage} className="ml-4 flex items-center gap-2 hover:bg-red-700 px-3 py-2 rounded-md font-medium border border-red-400 transition-colors">
+                            <button onClick={toggleLanguage} className="ml-2 flex items-center gap-2 hover:bg-red-700 px-3 py-2 rounded-md font-medium border border-red-400 transition-colors">
                                 {lang === 'en' ? (
                                     <>
                                         <span className="text-3xl leading-none" role="img" aria-label="Nepal Flag">🇳🇵</span>
@@ -59,6 +64,9 @@ const Navbar = () => {
                     </div>
                     
                     <div className="md:hidden flex items-center gap-2">
+                        <button onClick={toggleTheme} className="hover:bg-red-700 p-1.5 rounded-md transition-colors" aria-label="Toggle Dark Mode">
+                            {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                        </button>
                         <button onClick={toggleLanguage} className="hover:bg-red-700 px-3 py-1.5 rounded-md border border-red-400 text-sm flex items-center gap-1.5 transition-colors">
                                 {lang === 'en' ? (
                                     <>

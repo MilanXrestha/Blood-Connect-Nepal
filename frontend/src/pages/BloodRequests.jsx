@@ -75,10 +75,10 @@ const BloodRequests = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="md:flex md:items-center md:justify-between mb-8">
                 <div className="flex-1 min-w-0">
-                    <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                    <h2 className="text-2xl font-bold leading-7 text-gray-900 dark:text-white sm:text-3xl sm:truncate transition-colors duration-200">
                         {t.requests.title}
                     </h2>
-                    <p className="mt-1 text-sm text-gray-500">
+                    <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-200">
                         {t.requests.subtitle}
                     </p>
                 </div>
@@ -92,7 +92,7 @@ const BloodRequests = () => {
                             {showForm ? t.requests.cancelRequest : t.requests.postRequest}
                         </button>
                     ) : (
-                        <span className="text-sm text-gray-500">
+                        <span className="text-sm text-gray-500 dark:text-gray-400 transition-colors duration-200">
                             {t.requests.loginToPost}
                         </span>
                     )}
@@ -101,8 +101,8 @@ const BloodRequests = () => {
 
             {/* Create Request Form */}
             {showForm && user && (
-                <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 mb-8">
-                    <h3 className="text-lg font-medium leading-6 text-gray-900 mb-4">{t.requests.postNewRequest}</h3>
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 mb-8 transition-colors duration-200">
+                    <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-white mb-4 transition-colors duration-200">{t.requests.postNewRequest}</h3>
                     
                     {formError && (
                         <div className="mb-4 bg-red-50 border-l-4 border-red-500 p-4 text-sm text-red-700">
@@ -112,39 +112,39 @@ const BloodRequests = () => {
 
                     <form onSubmit={handleFormSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="col-span-2 md:col-span-1">
-                            <label className="block text-sm font-medium text-gray-700">{t.requests.patientName}</label>
-                            <input required name="patient_name" value={formData.patient_name} onChange={handleInputChange} type="text" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2" />
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200">{t.requests.patientName}</label>
+                            <input required name="patient_name" value={formData.patient_name} onChange={handleInputChange} type="text" className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200" />
                         </div>
                         
                         <div className="col-span-2 md:col-span-1">
-                            <label className="block text-sm font-medium text-gray-700">{t.requests.hospitalName}</label>
-                            <input required name="hospital_name" value={formData.hospital_name} onChange={handleInputChange} type="text" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2" />
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200">{t.requests.hospitalName}</label>
+                            <input required name="hospital_name" value={formData.hospital_name} onChange={handleInputChange} type="text" className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200" />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">{t.requests.bloodGroupNeeded}</label>
-                            <select required name="blood_group" value={formData.blood_group} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2 bg-white">
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200">{t.requests.bloodGroupNeeded}</label>
+                            <select required name="blood_group" value={formData.blood_group} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200">
                                 <option value="">{t.auth.select}</option>
                                 {BLOOD_GROUPS.map(bg => <option key={bg} value={bg}>{bg}</option>)}
                             </select>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">{t.auth.district}</label>
-                            <select required name="district" value={formData.district} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2 bg-white">
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200">{t.auth.district}</label>
+                            <select required name="district" value={formData.district} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200">
                                 <option value="">{t.auth.select}</option>
                                 {DISTRICTS.map(d => <option key={d} value={d}>{d}</option>)}
                             </select>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">{t.requests.contactPhone}</label>
-                            <input required name="phone_number" value={formData.phone_number} onChange={handleInputChange} type="tel" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2" />
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200">{t.requests.contactPhone}</label>
+                            <input required name="phone_number" value={formData.phone_number} onChange={handleInputChange} type="tel" className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200" />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">{t.requests.urgencyLevel}</label>
-                            <select name="urgency_level" value={formData.urgency_level} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2 bg-white">
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200">{t.requests.urgencyLevel}</label>
+                            <select name="urgency_level" value={formData.urgency_level} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200">
                                 {URGENCY_LEVELS.map(u => <option key={u} value={u}>{u}</option>)}
                             </select>
                         </div>
@@ -170,9 +170,9 @@ const BloodRequests = () => {
                     ))}
                 </div>
             ) : (
-                <div className="text-center py-20 bg-white rounded-lg border border-gray-200">
-                    <h3 className="mt-2 text-sm font-medium text-gray-900">{t.requests.noRequests}</h3>
-                    <p className="mt-1 text-sm text-gray-500">
+                <div className="text-center py-20 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-colors duration-200">
+                    <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-white transition-colors duration-200">{t.requests.noRequests}</h3>
+                    <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-200">
                         {t.requests.noRequestsDesc}
                     </p>
                 </div>

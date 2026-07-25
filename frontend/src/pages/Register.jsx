@@ -48,13 +48,13 @@ const Register = () => {
     };
 
     return (
-        <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
-            <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md border border-gray-100">
+        <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+            <div className="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 transition-colors duration-200">
                 <div>
                     <div className="flex justify-center">
                         <Droplet className="h-12 w-12 text-red-600 fill-current" />
                     </div>
-                    <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                    <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white transition-colors duration-200">
                         {t.auth.registerTitle}
                     </h2>
                 </div>
@@ -67,36 +67,36 @@ const Register = () => {
 
                 <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">{t.auth.username}</label>
-                        <input name="username" type="text" required onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm px-3 py-2 border" />
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200">{t.auth.username}</label>
+                        <input name="username" type="text" required onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm px-3 py-2 border bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200" />
                     </div>
                     
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">{t.auth.email}</label>
-                        <input name="email" type="email" required onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm px-3 py-2 border" />
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200">{t.auth.email}</label>
+                        <input name="email" type="email" required onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm px-3 py-2 border bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200" />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">{t.auth.password}</label>
-                        <input name="password" type="password" required minLength={6} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm px-3 py-2 border" />
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200">{t.auth.password}</label>
+                        <input name="password" type="password" required minLength={6} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm px-3 py-2 border bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200" />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">{t.auth.phone}</label>
-                        <input name="phone_number" type="tel" required onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm px-3 py-2 border" />
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200">{t.auth.phone}</label>
+                        <input name="phone_number" type="tel" required onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm px-3 py-2 border bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200" />
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">{t.auth.bloodGroup}</label>
-                            <select name="blood_group" required onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm px-3 py-2 border bg-white">
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200">{t.auth.bloodGroup}</label>
+                            <select name="blood_group" required onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm px-3 py-2 border bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200">
                                 <option value="">{t.auth.select}</option>
                                 {BLOOD_GROUPS.map(bg => <option key={bg} value={bg}>{bg}</option>)}
                             </select>
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">{t.auth.district}</label>
-                            <select name="district" required onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm px-3 py-2 border bg-white">
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200">{t.auth.district}</label>
+                            <select name="district" required onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm px-3 py-2 border bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200">
                                 <option value="">{t.auth.select}</option>
                                 {DISTRICTS.map(d => <option key={d} value={d}>{d}</option>)}
                             </select>
@@ -111,7 +111,7 @@ const Register = () => {
                 </form>
                 
                 <div className="text-center mt-4">
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-200">
                         {t.auth.alreadyRegistered}{' '}
                         <Link to="/login" className="font-medium text-red-600 hover:text-red-500">
                             {t.auth.signInHere}

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { useLanguage } from './context/LanguageContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -25,9 +26,10 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   const { t } = useLanguage();
   return (
-    <AuthProvider>
-      <Router>
-        <div className="min-h-screen flex flex-col bg-gray-50">
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
           <Navbar />
           <div className="flex-grow">
             <Routes>
@@ -46,14 +48,15 @@ function App() {
               />
             </Routes>
           </div>
-          <footer className="bg-white border-t border-gray-200 mt-auto py-6">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
+          <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-auto py-6 transition-colors duration-200">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500 dark:text-gray-400">
               &copy; {new Date().getFullYear()} {t.home.footer.rights}
             </div>
           </footer>
         </div>
       </Router>
     </AuthProvider>
+    </ThemeProvider>
   );
 }
 

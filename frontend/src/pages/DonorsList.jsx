@@ -51,17 +51,17 @@ const DonorsList = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="md:flex md:items-center md:justify-between mb-8">
                 <div className="flex-1 min-w-0">
-                    <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                    <h2 className="text-2xl font-bold leading-7 text-gray-900 dark:text-white sm:text-3xl sm:truncate transition-colors duration-200">
                         {t.donors.title}
                     </h2>
-                    <p className="mt-1 text-sm text-gray-500">
+                    <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-200">
                         {t.donors.subtitle}
                     </p>
                 </div>
             </div>
 
             {/* Filters Section */}
-            <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-8">
+            <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-8 transition-colors duration-200">
                 <form onSubmit={handleSearchSubmit} className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div className="md:col-span-2">
                         <div className="relative rounded-md shadow-sm">
@@ -70,7 +70,7 @@ const DonorsList = () => {
                             </div>
                             <input
                                 type="text"
-                                className="focus:ring-red-500 focus:border-red-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md py-2 border"
+                                className="focus:ring-red-500 focus:border-red-500 block w-full pl-10 sm:text-sm border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 rounded-md py-2 border transition-colors duration-200"
                                 placeholder={t.donors.searchPlaceholder}
                                 value={filters.search}
                                 onChange={(e) => setFilters({...filters, search: e.target.value})}
@@ -79,7 +79,7 @@ const DonorsList = () => {
                     </div>
                     <div>
                         <select
-                            className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md border bg-white"
+                            className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md border bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200"
                             value={filters.blood_group}
                             onChange={(e) => setFilters({...filters, blood_group: e.target.value})}
                         >
@@ -89,7 +89,7 @@ const DonorsList = () => {
                     </div>
                     <div>
                         <select
-                            className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md border bg-white"
+                            className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md border bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200"
                             value={filters.district}
                             onChange={(e) => setFilters({...filters, district: e.target.value})}
                         >
@@ -112,9 +112,9 @@ const DonorsList = () => {
                     ))}
                 </div>
             ) : (
-                <div className="text-center py-20 bg-white rounded-lg border border-gray-200">
-                    <h3 className="mt-2 text-sm font-medium text-gray-900">{t.donors.noDonors}</h3>
-                    <p className="mt-1 text-sm text-gray-500">
+                <div className="text-center py-20 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-colors duration-200">
+                    <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-white transition-colors duration-200">{t.donors.noDonors}</h3>
+                    <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-200">
                         {t.donors.noDonorsDesc}
                     </p>
                 </div>
