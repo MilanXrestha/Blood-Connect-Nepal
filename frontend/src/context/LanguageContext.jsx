@@ -75,7 +75,76 @@ const translations = {
             footer: {
                 rights: "Blood Connect Nepal. All rights reserved."
             }
-        }
+        },
+        auth: {
+                loginTitle: "Sign in to your account",
+                username: "Username",
+                password: "Password",
+                signIn: "Sign in",
+                signingIn: "Signing in...",
+                noAccount: "Don't have an account?",
+                registerAsDonor: "Register as a donor",
+                registerTitle: "Become a Donor",
+                email: "Email Address",
+                phone: "Phone Number",
+                bloodGroup: "Blood Group",
+                district: "District",
+                select: "Select...",
+                registerBtn: "Register as Donor",
+                registering: "Registering...",
+                alreadyRegistered: "Already registered?",
+                signInHere: "Sign in here",
+                invalidLogin: "Invalid username or password. Please try again.",
+                regFailed: "Registration failed. Please try again."
+            },
+            donors: {
+                title: "Find Blood Donors",
+                subtitle: "Search and contact available donors directly.",
+                searchPlaceholder: "Search by name...",
+                anyBloodGroup: "Any Blood Group",
+                anyDistrict: "Any District",
+                noDonors: "No donors found",
+                noDonorsDesc: "Try adjusting your search or filters to find more donors.",
+                availableNow: "Available Now",
+                unavailable: "Unavailable",
+                contactDonor: "Contact Donor",
+                notSpecified: "Not specified"
+            },
+            requests: {
+                title: "Urgent Blood Requests",
+                subtitle: "Help save a life by responding to these urgent appeals.",
+                cancelRequest: "Cancel Request",
+                postRequest: "Post Request",
+                loginToPost: "Log in to post a blood request",
+                postNewRequest: "Post a New Request",
+                patientName: "Patient Name",
+                hospitalName: "Hospital Name",
+                bloodGroupNeeded: "Blood Group Needed",
+                contactPhone: "Contact Phone Number",
+                urgencyLevel: "Urgency Level",
+                submitRequest: "Submit Request",
+                posting: "Posting...",
+                noRequests: "No active requests",
+                noRequestsDesc: "There are currently no urgent blood requests.",
+                urgency: "Urgency",
+                fulfilled: "Fulfilled",
+                posted: "Posted",
+                bloodNeededUrgently: "Blood needed urgently",
+                contactFamily: "Contact Family"
+            },
+            profile: {
+                title: "Donor Profile",
+                subtitle: "Manage your availability and information.",
+                status: "Status",
+                available: "Available to Donate",
+                unavailableStatus: "Currently Unavailable",
+                changeTo: "Change to",
+                updating: "Updating...",
+                myRequests: "My Requests",
+                markFulfilled: "Mark Fulfilled",
+                noRequests: "You haven't posted any blood requests yet.",
+                notProvided: "Not provided"
+            }
     },
     ne: {
         nav: {
@@ -151,7 +220,76 @@ const translations = {
             footer: {
                 rights: "रक्तदान नेपाल। सबै अधिकार सुरक्षित।"
             }
-        }
+        },
+        auth: {
+                loginTitle: "तपाईंको खातामा साइन इन गर्नुहोस्",
+                username: "प्रयोगकर्ता नाम",
+                password: "पासवर्ड",
+                signIn: "साइन इन गर्नुहोस्",
+                signingIn: "साइन इन हुँदैछ...",
+                noAccount: "खाता छैन?",
+                registerAsDonor: "रक्तदाताको रूपमा दर्ता गर्नुहोस्",
+                registerTitle: "रक्तदाता बन्नुहोस्",
+                email: "इमेल ठेगाना",
+                phone: "फोन नम्बर",
+                bloodGroup: "रक्त समूह",
+                district: "जिल्ला",
+                select: "छान्नुहोस्...",
+                registerBtn: "रक्तदाताको रूपमा दर्ता गर्नुहोस्",
+                registering: "दर्ता हुँदैछ...",
+                alreadyRegistered: "पहिले नै दर्ता हुनुहुन्छ?",
+                signInHere: "यहाँ साइन इन गर्नुहोस्",
+                invalidLogin: "अवैध प्रयोगकर्ता नाम वा पासवर्ड। कृपया फेरि प्रयास गर्नुहोस्।",
+                regFailed: "दर्ता असफल भयो। कृपया फेरि प्रयास गर्नुहोस्।"
+            },
+            donors: {
+                title: "रक्तदाता खोज्नुहोस्",
+                subtitle: "उपलब्ध रक्तदाताहरू खोज्नुहोस् र सिधै सम्पर्क गर्नुहोस्।",
+                searchPlaceholder: "नाम द्वारा खोज्नुहोस्...",
+                anyBloodGroup: "कुनै पनि रक्त समूह",
+                anyDistrict: "कुनै पनि जिल्ला",
+                noDonors: "कुनै रक्तदाता भेटिएन",
+                noDonorsDesc: "थप रक्तदाताहरू फेला पार्न आफ्नो खोज वा फिल्टरहरू समायोजन गर्ने प्रयास गर्नुहोस्।",
+                availableNow: "अहिले उपलब्ध",
+                unavailable: "अनुपलब्ध",
+                contactDonor: "रक्तदातालाई सम्पर्क गर्नुहोस्",
+                notSpecified: "उल्लेख गरिएको छैन"
+            },
+            requests: {
+                title: "अत्यावश्यक रगत अनुरोधहरू",
+                subtitle: "यी अत्यावश्यक अपीलहरूलाई प्रतिक्रिया दिएर जीवन बचाउन मद्दत गर्नुहोस्।",
+                cancelRequest: "अनुरोध रद्द गर्नुहोस्",
+                postRequest: "अनुरोध पोस्ट गर्नुहोस्",
+                loginToPost: "रगत अनुरोध पोस्ट गर्न लगइन गर्नुहोस्",
+                postNewRequest: "नयाँ अनुरोध पोस्ट गर्नुहोस्",
+                patientName: "बिरामीको नाम",
+                hospitalName: "अस्पतालको नाम",
+                bloodGroupNeeded: "आवश्यक रक्त समूह",
+                contactPhone: "सम्पर्क फोन नम्बर",
+                urgencyLevel: "जरुरी स्तर",
+                submitRequest: "अनुरोध पेश गर्नुहोस्",
+                posting: "पोस्ट हुँदैछ...",
+                noRequests: "कुनै सक्रिय अनुरोधहरू छैनन्",
+                noRequestsDesc: "हाल कुनै अत्यावश्यक रगत अनुरोधहरू छैनन्।",
+                urgency: "जरुरी",
+                fulfilled: "पूरा भयो",
+                posted: "पोस्ट गरिएको",
+                bloodNeededUrgently: "तुरुन्त रगत आवश्यक छ",
+                contactFamily: "परिवारलाई सम्पर्क गर्नुहोस्"
+            },
+            profile: {
+                title: "रक्तदाता प्रोफाइल",
+                subtitle: "आफ्नो उपलब्धता र जानकारी प्रबन्ध गर्नुहोस्।",
+                status: "स्थिति",
+                available: "रक्तदान गर्न उपलब्ध",
+                unavailableStatus: "हाल अनुपलब्ध",
+                changeTo: "परिवर्तन गर्नुहोस्",
+                updating: "अपडेट हुँदैछ...",
+                myRequests: "मेरा अनुरोधहरू",
+                markFulfilled: "पूरा भएको चिनो लगाउनुहोस्",
+                noRequests: "तपाईंले अहिलेसम्म कुनै रगत अनुरोध पोस्ट गर्नुभएको छैन।",
+                notProvided: "प्रदान गरिएको छैन"
+            }
     }
 };
 

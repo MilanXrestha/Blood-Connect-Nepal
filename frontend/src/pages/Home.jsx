@@ -46,6 +46,7 @@ const RevealOnScroll = ({ children, delay = 0 }) => {
 };
 
 const CountUp = ({ end, duration = 2000, suffix = "" }) => {
+    const { lang } = useLanguage();
     const [count, setCount] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef(null);
@@ -78,7 +79,17 @@ const CountUp = ({ end, duration = 2000, suffix = "" }) => {
         window.requestAnimationFrame(step);
     }, [isVisible, end, duration]);
 
-    return <span ref={ref}>{count.toLocaleString()}{suffix}</span>;
+    const toNepaliDigits = (numStr) => {
+        const nepaliDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+        return numStr.replace(/\d/g, (d) => nepaliDigits[d]);
+    };
+
+    let displayStr = count.toLocaleString('en-US');
+    if (lang === 'ne') {
+        displayStr = toNepaliDigits(displayStr);
+    }
+
+    return <span ref={ref}>{displayStr}{suffix}</span>;
 };
 
 const BloodInfoSection = () => {

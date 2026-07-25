@@ -42,17 +42,35 @@ const Navbar = () => {
                                 </div>
                             )}
 
-                            <button onClick={toggleLanguage} className="ml-4 flex items-center gap-1 hover:bg-red-700 px-3 py-2 rounded-md font-medium border border-red-400">
-                                <Languages className="w-4 h-4" />
-                                {lang === 'en' ? 'NE' : 'EN'}
+                            <button onClick={toggleLanguage} className="ml-4 flex items-center gap-2 hover:bg-red-700 px-3 py-2 rounded-md font-medium border border-red-400 transition-colors">
+                                {lang === 'en' ? (
+                                    <>
+                                        <span className="text-3xl leading-none" role="img" aria-label="Nepal Flag">🇳🇵</span>
+                                        <span>NE</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="text-3xl leading-none" role="img" aria-label="US Flag">🇺🇸</span>
+                                        <span>EN</span>
+                                    </>
+                                )}
                             </button>
                         </div>
                     </div>
                     
                     <div className="md:hidden flex items-center gap-2">
-                        <button onClick={toggleLanguage} className="hover:bg-red-700 p-2 rounded-md border border-red-400 text-sm flex items-center gap-1">
-                            <Languages className="w-4 h-4" />
-                            {lang === 'en' ? 'NE' : 'EN'}
+                        <button onClick={toggleLanguage} className="hover:bg-red-700 px-3 py-1.5 rounded-md border border-red-400 text-sm flex items-center gap-1.5 transition-colors">
+                                {lang === 'en' ? (
+                                    <>
+                                        <span className="text-3xl leading-none" role="img" aria-label="Nepal Flag">🇳🇵</span>
+                                        <span>NE</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="text-3xl leading-none" role="img" aria-label="US Flag">🇺🇸</span>
+                                        <span>EN</span>
+                                    </>
+                                )}
                         </button>
                         <button onClick={() => setIsOpen(!isOpen)} className="hover:bg-red-700 p-2 rounded-md">
                             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}

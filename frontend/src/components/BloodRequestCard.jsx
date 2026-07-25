@@ -1,6 +1,8 @@
 import { AlertCircle, MapPin, Phone, Hospital, Calendar } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const BloodRequestCard = ({ request }) => {
+    const { t } = useLanguage();
     // Determine badge color based on urgency
     const urgencyColors = {
         'High': 'bg-red-100 text-red-800 border-red-200',
@@ -21,12 +23,12 @@ const BloodRequestCard = ({ request }) => {
                         <div>
                             <h3 className="font-bold text-lg text-gray-900">{request.patient_name}</h3>
                             <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${badgeColor}`}>
-                                {request.urgency_level} Urgency
+                                {request.urgency_level} {t.requests.urgency}
                             </span>
                         </div>
                     </div>
                     {request.is_fulfilled && (
-                        <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded font-semibold">Fulfilled</span>
+                        <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded font-semibold">{t.requests.fulfilled}</span>
                     )}
                 </div>
 
@@ -45,7 +47,7 @@ const BloodRequestCard = ({ request }) => {
                     </div>
                     <div className="flex items-center gap-2 text-xs text-gray-400 mt-2">
                         <Calendar className="h-3 w-3" />
-                        <span>Posted: {new Date(request.created_at).toLocaleDateString()}</span>
+                        <span>{t.requests.posted}: {new Date(request.created_at).toLocaleDateString()}</span>
                     </div>
                 </div>
             </div>
@@ -54,10 +56,10 @@ const BloodRequestCard = ({ request }) => {
                 <div className="bg-gray-50 px-5 py-3 border-t border-gray-100 flex justify-between items-center">
                     <span className="text-xs text-gray-500 flex items-center gap-1">
                         <AlertCircle className="h-3 w-3 text-red-500" />
-                        Blood needed urgently
+                        {t.requests.bloodNeededUrgently}
                     </span>
                     <a href={`tel:${request.phone_number}`} className="text-red-600 font-medium text-sm hover:text-red-800 hover:underline">
-                        Contact Family
+                        {t.requests.contactFamily}
                     </a>
                 </div>
             )}

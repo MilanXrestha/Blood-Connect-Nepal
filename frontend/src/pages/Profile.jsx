@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import api from '../api/axios';
 import { User, Activity, Edit2 } from 'lucide-react';
 import BloodRequestCard from '../components/BloodRequestCard';
 
 const Profile = () => {
+    const { t } = useLanguage();
     const { user, setUser } = useAuth();
     const [myRequests, setMyRequests] = useState([]);
     const [updating, setUpdating] = useState(false);
@@ -66,10 +68,10 @@ const Profile = () => {
                     <div>
                         <h3 className="text-lg leading-6 font-medium text-gray-900 flex items-center gap-2">
                             <User className="h-5 w-5 text-gray-400" />
-                            Donor Profile
+                            {t.profile.title}
                         </h3>
                         <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                            Manage your availability and information.
+                            {t.profile.subtitle}
                         </p>
                     </div>
                     <div>
@@ -81,31 +83,31 @@ const Profile = () => {
                 <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
                     <dl className="sm:divide-y sm:divide-gray-200">
                         <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Username</dt>
+                            <dt className="text-sm font-medium text-gray-500">{t.auth.username}</dt>
                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.username}</dd>
                         </div>
                         <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">District</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.district || 'Not provided'}</dd>
+                            <dt className="text-sm font-medium text-gray-500">{t.auth.district}</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.district || t.profile.notProvided}</dd>
                         </div>
                         <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Phone number</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.phone_number || 'Not provided'}</dd>
+                            <dt className="text-sm font-medium text-gray-500">{t.auth.phone}</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.phone_number || t.profile.notProvided}</dd>
                         </div>
                         <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 bg-gray-50 items-center">
                             <dt className="text-sm font-medium text-gray-500 flex items-center gap-2">
-                                <Activity className="h-4 w-4" /> Status
+                                <Activity className="h-4 w-4" /> {t.profile.status}
                             </dt>
                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex items-center justify-between">
                                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${user.is_available ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
-                                    {user.is_available ? 'Available to Donate' : 'Currently Unavailable'}
+                                    {user.is_available ? t.profile.available : t.profile.unavailableStatus}
                                 </span>
                                 <button 
                                     onClick={toggleAvailability}
                                     disabled={updating}
                                     className="text-sm text-red-600 hover:text-red-800 font-medium"
                                 >
-                                    {updating ? 'Updating...' : `Change to ${user.is_available ? 'Unavailable' : 'Available'}`}
+                                    {updating ? t.profile.updating : `${t.profile.changeTo} ${user.is_available ? t.donors.unavailable : t.profile.available}`}
                                 </button>
                             </dd>
                         </div>
@@ -116,7 +118,7 @@ const Profile = () => {
             {/* My Requests Section */}
             <div className="mb-4 flex items-center gap-2">
                 <Edit2 className="h-5 w-5 text-gray-500" />
-                <h2 className="text-xl font-bold text-gray-900">My Requests</h2>
+                <h2 className="text-xl font-bold text-gray-900">{t.profile.myRequests}</h2>
             </div>
             
             {loadingReqs ? (
@@ -140,7 +142,7 @@ const Profile = () => {
                                         onClick={() => markFulfilled(request.id)}
                                         className="text-xs font-bold text-green-600 hover:text-green-800 border border-green-200 bg-green-50 px-2 py-1 rounded"
                                     >
-                                        Mark Fulfilled
+                                        {t.profile.markFulfilled}
                                     </button>
                                 </div>
                             )}
@@ -149,7 +151,7 @@ const Profile = () => {
                 </div>
             ) : (
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 text-center text-gray-500">
-                    You haven't posted any blood requests yet.
+                    {t.profile.noRequests}
                 </div>
             )}
         </div>

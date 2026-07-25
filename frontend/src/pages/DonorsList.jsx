@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import api from '../api/axios';
 import DonorCard from '../components/DonorCard';
+import { useLanguage } from '../context/LanguageContext';
 import { Search } from 'lucide-react';
 
 const BLOOD_GROUPS = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
@@ -10,6 +11,7 @@ const DISTRICTS = [
 ];
 
 const DonorsList = () => {
+    const { t } = useLanguage();
     const [donors, setDonors] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filters, setFilters] = useState({
@@ -50,10 +52,10 @@ const DonorsList = () => {
             <div className="md:flex md:items-center md:justify-between mb-8">
                 <div className="flex-1 min-w-0">
                     <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-                        Find Blood Donors
+                        {t.donors.title}
                     </h2>
                     <p className="mt-1 text-sm text-gray-500">
-                        Search and contact available donors directly.
+                        {t.donors.subtitle}
                     </p>
                 </div>
             </div>
@@ -69,7 +71,7 @@ const DonorsList = () => {
                             <input
                                 type="text"
                                 className="focus:ring-red-500 focus:border-red-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md py-2 border"
-                                placeholder="Search by name..."
+                                placeholder={t.donors.searchPlaceholder}
                                 value={filters.search}
                                 onChange={(e) => setFilters({...filters, search: e.target.value})}
                             />
@@ -81,7 +83,7 @@ const DonorsList = () => {
                             value={filters.blood_group}
                             onChange={(e) => setFilters({...filters, blood_group: e.target.value})}
                         >
-                            <option value="">Any Blood Group</option>
+                            <option value="">{t.donors.anyBloodGroup}</option>
                             {BLOOD_GROUPS.map(bg => <option key={bg} value={bg}>{bg}</option>)}
                         </select>
                     </div>
@@ -91,7 +93,7 @@ const DonorsList = () => {
                             value={filters.district}
                             onChange={(e) => setFilters({...filters, district: e.target.value})}
                         >
-                            <option value="">Any District</option>
+                            <option value="">{t.donors.anyDistrict}</option>
                             {DISTRICTS.map(d => <option key={d} value={d}>{d}</option>)}
                         </select>
                     </div>
@@ -111,9 +113,9 @@ const DonorsList = () => {
                 </div>
             ) : (
                 <div className="text-center py-20 bg-white rounded-lg border border-gray-200">
-                    <h3 className="mt-2 text-sm font-medium text-gray-900">No donors found</h3>
+                    <h3 className="mt-2 text-sm font-medium text-gray-900">{t.donors.noDonors}</h3>
                     <p className="mt-1 text-sm text-gray-500">
-                        Try adjusting your search or filters to find more donors.
+                        {t.donors.noDonorsDesc}
                     </p>
                 </div>
             )}

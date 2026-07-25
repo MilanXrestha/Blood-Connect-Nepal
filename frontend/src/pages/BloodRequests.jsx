@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import BloodRequestCard from '../components/BloodRequestCard';
 import { Plus } from 'lucide-react';
 
@@ -12,6 +13,7 @@ const DISTRICTS = [
 ];
 
 const BloodRequests = () => {
+    const { t } = useLanguage();
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
@@ -74,10 +76,10 @@ const BloodRequests = () => {
             <div className="md:flex md:items-center md:justify-between mb-8">
                 <div className="flex-1 min-w-0">
                     <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-                        Urgent Blood Requests
+                        {t.requests.title}
                     </h2>
                     <p className="mt-1 text-sm text-gray-500">
-                        Help save a life by responding to these urgent appeals.
+                        {t.requests.subtitle}
                     </p>
                 </div>
                 <div className="mt-4 flex md:mt-0 md:ml-4">
@@ -87,11 +89,11 @@ const BloodRequests = () => {
                             className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none"
                         >
                             <Plus className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
-                            {showForm ? 'Cancel Request' : 'Post Request'}
+                            {showForm ? t.requests.cancelRequest : t.requests.postRequest}
                         </button>
                     ) : (
                         <span className="text-sm text-gray-500">
-                            Log in to post a blood request
+                            {t.requests.loginToPost}
                         </span>
                     )}
                 </div>
@@ -100,7 +102,7 @@ const BloodRequests = () => {
             {/* Create Request Form */}
             {showForm && user && (
                 <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 mb-8">
-                    <h3 className="text-lg font-medium leading-6 text-gray-900 mb-4">Post a New Request</h3>
+                    <h3 className="text-lg font-medium leading-6 text-gray-900 mb-4">{t.requests.postNewRequest}</h3>
                     
                     {formError && (
                         <div className="mb-4 bg-red-50 border-l-4 border-red-500 p-4 text-sm text-red-700">
@@ -110,38 +112,38 @@ const BloodRequests = () => {
 
                     <form onSubmit={handleFormSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="col-span-2 md:col-span-1">
-                            <label className="block text-sm font-medium text-gray-700">Patient Name</label>
+                            <label className="block text-sm font-medium text-gray-700">{t.requests.patientName}</label>
                             <input required name="patient_name" value={formData.patient_name} onChange={handleInputChange} type="text" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2" />
                         </div>
                         
                         <div className="col-span-2 md:col-span-1">
-                            <label className="block text-sm font-medium text-gray-700">Hospital Name</label>
+                            <label className="block text-sm font-medium text-gray-700">{t.requests.hospitalName}</label>
                             <input required name="hospital_name" value={formData.hospital_name} onChange={handleInputChange} type="text" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2" />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">Blood Group Needed</label>
+                            <label className="block text-sm font-medium text-gray-700">{t.requests.bloodGroupNeeded}</label>
                             <select required name="blood_group" value={formData.blood_group} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2 bg-white">
-                                <option value="">Select...</option>
+                                <option value="">{t.auth.select}</option>
                                 {BLOOD_GROUPS.map(bg => <option key={bg} value={bg}>{bg}</option>)}
                             </select>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">District</label>
+                            <label className="block text-sm font-medium text-gray-700">{t.auth.district}</label>
                             <select required name="district" value={formData.district} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2 bg-white">
-                                <option value="">Select...</option>
+                                <option value="">{t.auth.select}</option>
                                 {DISTRICTS.map(d => <option key={d} value={d}>{d}</option>)}
                             </select>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">Contact Phone Number</label>
+                            <label className="block text-sm font-medium text-gray-700">{t.requests.contactPhone}</label>
                             <input required name="phone_number" value={formData.phone_number} onChange={handleInputChange} type="tel" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2" />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">Urgency Level</label>
+                            <label className="block text-sm font-medium text-gray-700">{t.requests.urgencyLevel}</label>
                             <select name="urgency_level" value={formData.urgency_level} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm border px-3 py-2 bg-white">
                                 {URGENCY_LEVELS.map(u => <option key={u} value={u}>{u}</option>)}
                             </select>
@@ -149,7 +151,7 @@ const BloodRequests = () => {
 
                         <div className="col-span-2 flex justify-end mt-2">
                             <button type="submit" disabled={formLoading} className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50">
-                                {formLoading ? 'Posting...' : 'Submit Request'}
+                                {formLoading ? t.requests.posting : t.requests.submitRequest}
                             </button>
                         </div>
                     </form>
@@ -169,9 +171,9 @@ const BloodRequests = () => {
                 </div>
             ) : (
                 <div className="text-center py-20 bg-white rounded-lg border border-gray-200">
-                    <h3 className="mt-2 text-sm font-medium text-gray-900">No active requests</h3>
+                    <h3 className="mt-2 text-sm font-medium text-gray-900">{t.requests.noRequests}</h3>
                     <p className="mt-1 text-sm text-gray-500">
-                        There are currently no urgent blood requests. 
+                        {t.requests.noRequestsDesc}
                     </p>
                 </div>
             )}
