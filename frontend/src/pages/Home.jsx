@@ -5,6 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 import axios from 'axios';
 import BloodStockChart from '../components/BloodStockChart';
 import Leaderboard from '../components/Leaderboard';
+import BloodCompatibilityMatrix from '../components/BloodCompatibilityMatrix';
 
 
 const RevealOnScroll = ({ children, delay = 0 }) => {
@@ -196,8 +197,19 @@ const Home = () => {
         <div className="flex flex-col min-h-[calc(100vh-4rem)] bg-white dark:bg-gray-950 transition-colors">
             <main className="flex-grow">
                 {/* Hero Section */}
-                <div className="bg-white dark:bg-gray-950 border-b border-gray-100 dark:border-gray-800/80 transition-colors">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 lg:pt-24 lg:pb-28">
+                <div className="relative overflow-hidden bg-white dark:bg-gray-950 border-b border-gray-100 dark:border-gray-800/80 transition-colors">
+                    {/* Background Medical Illustration with Gradient Fade */}
+                    <div className="absolute inset-0 z-0 select-none pointer-events-none">
+                        <img 
+                            src="/hero_bg.png" 
+                            alt="Medical & Blood Donation Background" 
+                            className="w-full h-full object-cover object-right lg:object-center opacity-35 dark:opacity-20 scale-105" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent dark:from-gray-950 dark:via-gray-950/85 dark:to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-gray-950 dark:via-transparent dark:to-transparent" />
+                    </div>
+
+                    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 lg:pt-24 lg:pb-32">
                         <div className="max-w-3xl">
                             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-gray-900 dark:text-white leading-tight">
                                 <span className="block">{t.home.hero.line1}</span>
@@ -333,6 +345,9 @@ const Home = () => {
 
                 {/* Interactive Blood Information Section */}
                 <BloodInfoSection />
+
+                {/* Blood Compatibility Matrix & Medical Fun Facts */}
+                <BloodCompatibilityMatrix />
 
                 {/* Community / Image Section */}
                 <div className="bg-white dark:bg-gray-950 py-16 lg:py-24 border-t border-gray-100 dark:border-gray-800 transition-colors">

@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
-import { Droplet, Menu, X, User as UserIcon, Languages, Sun, Moon } from 'lucide-react';
+import { Droplet, Menu, X, User as UserIcon, Sun, Moon, LogOut } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useState } from 'react';
 
@@ -10,107 +10,214 @@ const Navbar = () => {
     const { lang, toggleLanguage, t } = useLanguage();
     const { theme, toggleTheme } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
+
+    const isActive = (path) => location.pathname === path;
+
+    const navLinks = [
+        { path: '/donors', label: t.nav.findDonors },
+        { path: '/requests', label: t.nav.urgentRequests },
+        { path: '/eligibility-check', label: lang === 'ne' ? 'योग्यता जाँच' : 'Health Quiz' },
+        { path: '/blood-banks', label: lang === 'ne' ? 'रक्त केन्द्र' : 'Blood Banks' },
+    ];
 
     return (
-        <nav className="bg-red-600 text-white shadow-lg">
+        <nav className="sticky top-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200/80 dark:border-gray-800/80 transition-colors duration-200">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
+                    
+                    {/* Brand Logo */}
                     <div className="flex items-center">
-                        <Link to="/" className="flex items-center gap-2 font-bold text-xl">
-                            <Droplet className="h-6 w-6 text-white fill-current" />
-                            <span>{t.nav.title}</span>
+                        <Link to="/" className="flex items-center gap-2.5 group">
+                            <div className="p-2 rounded-xl bg-red-50 dark:bg-red-950/50 border border-red-100 dark:border-red-900/50 text-red-600 dark:text-red-500 group-hover:scale-105 transition-transform duration-200 shadow-sm">
+                                <Droplet className="h-5 w-5 fill-current" />
+                            </div>
+                            <span className="font-bold text-lg tracking-tight text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                                {t.nav.title}
+                            </span>
                         </Link>
                     </div>
                     
-                    <div className="hidden md:block">
-                        <div className="ml-10 flex items-center space-x-4">
-                            <Link to="/donors" className="hover:bg-red-700 px-3 py-2 rounded-md font-medium">{t.nav.findDonors}</Link>
-                            <Link to="/requests" className="hover:bg-red-700 px-3 py-2 rounded-md font-medium">{t.nav.urgentRequests}</Link>
-                            <Link to="/eligibility-check" className="hover:bg-red-700 px-3 py-2 rounded-md font-medium">{lang === 'ne' ? 'योग्यता जाँच' : 'Health Quiz'}</Link>
-                            <Link to="/blood-banks" className="hover:bg-red-700 px-3 py-2 rounded-md font-medium">{lang === 'ne' ? 'रक्त केन्द्र' : 'Blood Banks'}</Link>
+                    {/* Desktop Navigation Links */}
+                    <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.path}
+                                to={link.path}
+                                className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+                                    isActive(link.path)
+                                        ? 'text-red-600 dark:text-red-400 bg-red-50/80 dark:bg-red-950/40 font-semibold'
+                                        : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/70 dark:hover:bg-gray-800/50'
+                                }`}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                    </div>
 
+                    {/* Right Side Controls (Theme, Language, Auth) */}
+                    <div className="hidden md:flex items-center space-x-3">
+                        
+                        {/* Theme Toggle Button */}
+                        <button 
+                            onClick={toggleTheme} 
+                            className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" 
+                            aria-label="Toggle Dark Mode"
+                            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                        >
+                            {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                        </button>
 
-                            
-                            {user ? (
-                                <div className="flex items-center space-x-4 ml-4">
-                                    <Link to="/profile" className="flex items-center gap-1 hover:bg-red-700 px-3 py-2 rounded-md font-medium">
-                                        <UserIcon className="h-4 w-4" />
-                                        {t.nav.profile}
-                                    </Link>
-                                    <button onClick={logout} className="bg-red-700 hover:bg-red-800 px-3 py-2 rounded-md font-medium">
-                                        {t.nav.logout}
-                                    </button>
-                                </div>
+                        {/* Language Switcher Button */}
+                        <button 
+                            onClick={toggleLanguage} 
+                            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-gray-100 dark:bg-gray-800/80 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 border border-gray-200/60 dark:border-gray-700/60 transition-all"
+                            title="Switch Language"
+                        >
+                            {lang === 'en' ? (
+                                <>
+                                    <span className="text-sm leading-none" role="img" aria-label="Nepal Flag">🇳🇵</span>
+                                    <span>NE</span>
+                                </>
                             ) : (
-                                <div className="flex items-center space-x-4 ml-4">
-                                    <Link to="/login" className="hover:bg-red-700 px-3 py-2 rounded-md font-medium">{t.nav.login}</Link>
-                                    <Link to="/register" className="bg-white text-red-600 hover:bg-gray-100 px-4 py-2 rounded-md font-medium shadow-sm">{t.nav.register}</Link>
-                                </div>
+                                <>
+                                    <span className="text-sm leading-none" role="img" aria-label="US Flag">🇺🇸</span>
+                                    <span>EN</span>
+                                </>
                             )}
-                            <button onClick={toggleTheme} className="ml-4 hover:bg-red-700 p-2 rounded-md transition-colors border border-transparent" aria-label="Toggle Dark Mode">
-                                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-                            </button>
+                        </button>
 
-                            <button onClick={toggleLanguage} className="ml-2 flex items-center gap-2 hover:bg-red-700 px-3 py-2 rounded-md font-medium border border-red-400 transition-colors">
-                                {lang === 'en' ? (
-                                    <>
-                                        <span className="text-3xl leading-none" role="img" aria-label="Nepal Flag">🇳🇵</span>
-                                        <span>NE</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        <span className="text-3xl leading-none" role="img" aria-label="US Flag">🇺🇸</span>
-                                        <span>EN</span>
-                                    </>
-                                )}
-                            </button>
-                        </div>
+                        <div className="h-4 w-px bg-gray-200 dark:bg-gray-800 mx-1"></div>
+
+                        {/* User Authentication Actions */}
+                        {user ? (
+                            <div className="flex items-center space-x-2">
+                                <Link 
+                                    to="/profile" 
+                                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                                >
+                                    <UserIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                                    <span>{t.nav.profile}</span>
+                                </Link>
+                                <button 
+                                    onClick={logout} 
+                                    className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/50 transition-colors"
+                                    title={t.nav.logout}
+                                >
+                                    <LogOut className="h-4 w-4" />
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="flex items-center space-x-2.5">
+                                <Link 
+                                    to="/login" 
+                                    className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/70 dark:hover:bg-gray-800/50 transition-colors"
+                                >
+                                    {t.nav.login}
+                                </Link>
+                                <Link 
+                                    to="/register" 
+                                    className="bg-red-600 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-sm hover:shadow transition-all duration-150"
+                                >
+                                    {t.nav.register}
+                                </Link>
+                            </div>
+                        )}
                     </div>
                     
-                    <div className="md:hidden flex items-center gap-2">
-                        <button onClick={toggleTheme} className="hover:bg-red-700 p-1.5 rounded-md transition-colors" aria-label="Toggle Dark Mode">
-                            {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                    {/* Mobile Menu Button & Controls */}
+                    <div className="md:hidden flex items-center gap-1.5">
+                        <button 
+                            onClick={toggleTheme} 
+                            className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" 
+                            aria-label="Toggle Dark Mode"
+                        >
+                            {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
                         </button>
-                        <button onClick={toggleLanguage} className="hover:bg-red-700 px-3 py-1.5 rounded-md border border-red-400 text-sm flex items-center gap-1.5 transition-colors">
-                                {lang === 'en' ? (
-                                    <>
-                                        <span className="text-3xl leading-none" role="img" aria-label="Nepal Flag">🇳🇵</span>
-                                        <span>NE</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        <span className="text-3xl leading-none" role="img" aria-label="US Flag">🇺🇸</span>
-                                        <span>EN</span>
-                                    </>
-                                )}
+                        
+                        <button 
+                            onClick={toggleLanguage} 
+                            className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
+                        >
+                            {lang === 'en' ? (
+                                <>
+                                    <span className="text-sm leading-none" role="img" aria-label="Nepal Flag">🇳🇵</span>
+                                    <span>NE</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span className="text-sm leading-none" role="img" aria-label="US Flag">🇺🇸</span>
+                                    <span>EN</span>
+                                </>
+                            )}
                         </button>
-                        <button onClick={() => setIsOpen(!isOpen)} className="hover:bg-red-700 p-2 rounded-md">
+
+                        <button 
+                            onClick={() => setIsOpen(!isOpen)} 
+                            className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ml-1"
+                        >
                             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                         </button>
                     </div>
                 </div>
             </div>
 
-            {/* Mobile menu */}
+            {/* Mobile Frosted Glass Menu Dropdown */}
             {isOpen && (
-                <div className="md:hidden">
-                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                        <Link to="/donors" className="hover:bg-red-700 block px-3 py-2 rounded-md font-medium">{t.nav.findDonors}</Link>
-                        <Link to="/requests" className="hover:bg-red-700 block px-3 py-2 rounded-md font-medium">{t.nav.urgentRequests}</Link>
-                        <Link to="/eligibility-check" className="hover:bg-red-700 block px-3 py-2 rounded-md font-medium">{lang === 'ne' ? 'योग्यता जाँच' : 'Health Quiz'}</Link>
-                        <Link to="/blood-banks" className="hover:bg-red-700 block px-3 py-2 rounded-md font-medium">{lang === 'ne' ? 'रक्त केन्द्र' : 'Blood Banks'}</Link>
+                <div className="md:hidden bg-white/95 dark:bg-gray-950/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 px-4 pt-2 pb-6 space-y-2 animate-fade-in-up">
+                    <div className="space-y-1">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.path}
+                                to={link.path}
+                                onClick={() => setIsOpen(false)}
+                                className={`block px-3.5 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                                    isActive(link.path)
+                                        ? 'text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/40 font-semibold'
+                                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/60'
+                                }`}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                    </div>
 
-
+                    <div className="pt-3 mt-3 border-t border-gray-100 dark:border-gray-800">
                         {user ? (
-                            <>
-                                <Link to="/profile" className="hover:bg-red-700 block px-3 py-2 rounded-md font-medium">{t.nav.profile}</Link>
-                                <button onClick={logout} className="hover:bg-red-700 block w-full text-left px-3 py-2 rounded-md font-medium">{t.nav.logout}</button>
-                            </>
+                            <div className="space-y-2">
+                                <Link 
+                                    to="/profile" 
+                                    onClick={() => setIsOpen(false)}
+                                    className="flex items-center gap-2 px-3.5 py-2.5 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                                >
+                                    <UserIcon className="h-4 w-4" />
+                                    <span>{t.nav.profile}</span>
+                                </Link>
+                                <button 
+                                    onClick={() => { logout(); setIsOpen(false); }} 
+                                    className="flex items-center gap-2 w-full text-left px-3.5 py-2.5 rounded-lg text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40"
+                                >
+                                    <LogOut className="h-4 w-4" />
+                                    <span>{t.nav.logout}</span>
+                                </button>
+                            </div>
                         ) : (
-                            <>
-                                <Link to="/login" className="hover:bg-red-700 block px-3 py-2 rounded-md font-medium">{t.nav.login}</Link>
-                                <Link to="/register" className="bg-white text-red-600 block px-3 py-2 rounded-md font-medium mt-2 text-center">{t.nav.register}</Link>
-                            </>
+                            <div className="flex flex-col gap-2 pt-1">
+                                <Link 
+                                    to="/login" 
+                                    onClick={() => setIsOpen(false)}
+                                    className="w-full text-center py-2.5 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-800/80 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                                >
+                                    {t.nav.login}
+                                </Link>
+                                <Link 
+                                    to="/register" 
+                                    onClick={() => setIsOpen(false)}
+                                    className="w-full text-center py-2.5 rounded-lg text-sm font-semibold text-white bg-red-600 hover:bg-red-700 shadow-sm transition-all"
+                                >
+                                    {t.nav.register}
+                                </Link>
+                            </div>
                         )}
                     </div>
                 </div>
