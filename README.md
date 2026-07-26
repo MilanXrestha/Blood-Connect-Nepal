@@ -168,6 +168,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 <div align="center">
-  <p><b>Built with ❤️ for saving lives in Nepal 🇳🇵</b></p>
-  <p>© 2026 Blood Connect Nepal Team. All rights reserved.</p>
+  <p>© 2026 Blood Connect Nepal. All rights reserved.</p>
 </div>
