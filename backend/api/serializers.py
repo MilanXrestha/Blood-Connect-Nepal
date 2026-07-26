@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import User, BloodRequest
+from .models import User, BloodRequest, BloodBank
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'blood_group', 'phone_number', 'district', 'is_available', 'last_donated_date', 'password']
+        fields = ['id', 'username', 'email', 'blood_group', 'phone_number', 'district', 'is_available', 'last_donated_date', 'donations_count', 'password']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -18,3 +18,9 @@ class BloodRequestSerializer(serializers.ModelSerializer):
         model = BloodRequest
         fields = '__all__'
         read_only_fields = ['requester', 'created_at', 'updated_at']
+
+class BloodBankSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BloodBank
+        fields = '__all__'
+

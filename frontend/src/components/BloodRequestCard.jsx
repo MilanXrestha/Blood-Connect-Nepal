@@ -1,8 +1,12 @@
-import { AlertCircle, MapPin, Phone, Hospital, Calendar } from 'lucide-react';
+import { useState } from 'react';
+import { AlertCircle, MapPin, Phone, Hospital, Calendar, Share2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import EmergencyShareModal from './EmergencyShareModal';
 
 const BloodRequestCard = ({ request }) => {
-    const { t } = useLanguage();
+    const { t, lang } = useLanguage();
+    const [isShareOpen, setIsShareOpen] = useState(false);
+
     // Determine badge color based on urgency
     const urgencyColors = {
         'High': 'bg-red-100 text-red-800 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800',
@@ -58,13 +62,30 @@ const BloodRequestCard = ({ request }) => {
                         <AlertCircle className="h-3 w-3 text-red-500" />
                         {t.requests.bloodNeededUrgently}
                     </span>
-                    <a href={`tel:${request.phone_number}`} className="text-red-600 font-medium text-sm hover:text-red-800 hover:underline">
-                        {t.requests.contactFamily}
-                    </a>
+                    <div className="flex items-center gap-3">
+                        <button
+                            type="button"
+                            onClick={() => setIsShareOpen(true)}
+                            className="text-xs bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 px-3 py-1.5 rounded-lg font-bold hover:bg-red-200 dark:hover:bg-red-900 transition-all flex items-center gap-1 shadow-sm"
+                        >
+                            <Share2 className="w-3.5 h-3.5" />
+                            {lang === 'ne' ? 'सेयर' : 'Viral Alert'}
+                        </button>
+                        <a href={`tel:${request.phone_number}`} className="text-red-600 font-medium text-sm hover:text-red-800 hover:underline">
+                            {t.requests.contactFamily}
+                        </a>
+                    </div>
                 </div>
             )}
+
+            <EmergencyShareModal
+                isOpen={isShareOpen}
+                onClose={() => setIsShareOpen(false)}
+                request={request}
+            />
         </div>
     );
 };
 
 export default BloodRequestCard;
+

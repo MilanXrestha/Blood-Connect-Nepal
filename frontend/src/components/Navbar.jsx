@@ -26,6 +26,10 @@ const Navbar = () => {
                         <div className="ml-10 flex items-center space-x-4">
                             <Link to="/donors" className="hover:bg-red-700 px-3 py-2 rounded-md font-medium">{t.nav.findDonors}</Link>
                             <Link to="/requests" className="hover:bg-red-700 px-3 py-2 rounded-md font-medium">{t.nav.urgentRequests}</Link>
+                            <Link to="/eligibility-check" className="hover:bg-red-700 px-3 py-2 rounded-md font-medium">{lang === 'ne' ? 'योग्यता जाँच' : 'Health Quiz'}</Link>
+                            <Link to="/blood-banks" className="hover:bg-red-700 px-3 py-2 rounded-md font-medium">{lang === 'ne' ? 'रक्त केन्द्र' : 'Blood Banks'}</Link>
+
+
                             
                             {user ? (
                                 <div className="flex items-center space-x-4 ml-4">
@@ -93,6 +97,10 @@ const Navbar = () => {
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                         <Link to="/donors" className="hover:bg-red-700 block px-3 py-2 rounded-md font-medium">{t.nav.findDonors}</Link>
                         <Link to="/requests" className="hover:bg-red-700 block px-3 py-2 rounded-md font-medium">{t.nav.urgentRequests}</Link>
+                        <Link to="/eligibility-check" className="hover:bg-red-700 block px-3 py-2 rounded-md font-medium">{lang === 'ne' ? 'योग्यता जाँच' : 'Health Quiz'}</Link>
+                        <Link to="/blood-banks" className="hover:bg-red-700 block px-3 py-2 rounded-md font-medium">{lang === 'ne' ? 'रक्त केन्द्र' : 'Blood Banks'}</Link>
+
+
                         {user ? (
                             <>
                                 <Link to="/profile" className="hover:bg-red-700 block px-3 py-2 rounded-md font-medium">{t.nav.profile}</Link>

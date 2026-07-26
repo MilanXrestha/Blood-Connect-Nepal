@@ -1,7 +1,7 @@
 from rest_framework import viewsets, permissions, generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import User, BloodRequest
-from .serializers import UserSerializer, BloodRequestSerializer
+from .models import User, BloodRequest, BloodBank
+from .serializers import UserSerializer, BloodRequestSerializer, BloodBankSerializer
 
 class DonorViewSet(viewsets.ReadOnlyModelViewSet):
     """
@@ -44,3 +44,23 @@ class BloodRequestViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(requester=self.request.user)
+
+class BloodBankViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    List verified blood banks across Nepal with district filtering and search.
+    """
+    queryset = BloodBank.objects.all().order_by('name')
+    serializer_class = BloodBankSerializer
+    permission_classes = [permissions.AllowAny]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['district', 'is_24_hours']
+    search_fields = ['name', 'address', 'district']
+
+class LeaderboardViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Returns top donors ranked by total verified blood donations.
+    """
+    queryset = User.objects.filter(donations_count__gt=0).order_by('-donations_count')[:20]
+    serializer_class = UserSerializer
+    permission_classes = [permissions.AllowAny]
+

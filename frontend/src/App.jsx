@@ -9,6 +9,8 @@ import Register from './pages/Register';
 import DonorsList from './pages/DonorsList';
 import BloodRequests from './pages/BloodRequests';
 import Profile from './pages/Profile';
+import EligibilityCheck from './pages/EligibilityCheck';
+import BloodBanks from './pages/BloodBanks';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -38,6 +40,10 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/donors" element={<DonorsList />} />
               <Route path="/requests" element={<BloodRequests />} />
+              <Route path="/eligibility-check" element={<EligibilityCheck />} />
+              <Route path="/blood-banks" element={<BloodBanks />} />
+
+
               <Route 
                 path="/profile" 
                 element={

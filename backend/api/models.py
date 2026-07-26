@@ -32,6 +32,7 @@ class User(AbstractUser):
     district = models.CharField(max_length=50, choices=DISTRICT_CHOICES, blank=True, null=True)
     is_available = models.BooleanField(default=True, help_text="Is the user currently available to donate blood?")
     last_donated_date = models.DateField(blank=True, null=True)
+    donations_count = models.IntegerField(default=0, help_text="Total verified blood donations")
 
     def __str__(self):
         return f"{self.username} - {self.blood_group}"
@@ -56,3 +57,17 @@ class BloodRequest(models.Model):
 
     def __str__(self):
         return f"Request for {self.blood_group} at {self.hospital_name}"
+
+class BloodBank(models.Model):
+    name = models.CharField(max_length=255)
+    district = models.CharField(max_length=50, choices=DISTRICT_CHOICES)
+    address = models.CharField(max_length=255)
+    phone = models.CharField(max_length=50)
+    emergency_contact = models.CharField(max_length=50, blank=True, null=True)
+    operating_hours = models.CharField(max_length=100, default="24/7 Emergency Service")
+    is_24_hours = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.district})"
+
